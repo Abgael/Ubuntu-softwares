@@ -7,6 +7,7 @@ sudo mv bxt_guc_ver8_7.bin kbl_guc_ver9_14.bin /lib/firmware/i915
 sudo chmod 644 bxt_guc_ver8_7.bin kbl_guc_ver9_14.bin
 sudo chown root:root bxt_guc_ver8_7.bin kbl_guc_ver9_14.bin
 #Download Git for Linux and Unix
+sudo apt purge git
 sudo add-apt-repository ppa:git-core/ppa
 sudo apt update
 sudo apt install git
