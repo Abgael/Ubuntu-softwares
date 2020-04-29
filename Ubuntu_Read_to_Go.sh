@@ -7,10 +7,10 @@ sudo mv bxt_guc_ver8_7.bin kbl_guc_ver9_14.bin /lib/firmware/i915
 sudo chmod 644 bxt_guc_ver8_7.bin kbl_guc_ver9_14.bin
 sudo chown root:root bxt_guc_ver8_7.bin kbl_guc_ver9_14.bin
 #Download Git for Linux and Unix
-sudo apt purge git
+sudo apt purge git -y
 sudo add-apt-repository ppa:git-core/ppa
 sudo apt update
-sudo apt install git
+sudo apt install git -y
 #Spotify for Linux
 sudo apt install curl
 curl -sS https://download.spotify.com/debian/pubkey.gpg | sudo apt-key add -
