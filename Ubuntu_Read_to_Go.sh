@@ -32,7 +32,7 @@ sudo add-apt-repository ppa:mozillateam/ppa -y
 sudo apt update
 sudo apt install firefox-esr firefox-esr-locale-pt
 #Installing LibreOffice on Linux
-sudo apt purge libreoffice-common
+sudo apt purge libreoffice-common -y
 sudo add-apt-repository ppa:libreoffice/ppa -y
 sudo apt update
 sudo apt install libreoffice-common libreoffice-help-pt-br libreoffice-l10n-pt-br -y
