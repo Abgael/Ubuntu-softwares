@@ -83,3 +83,15 @@ then
 else
 	echo "No DXVK support"
 fi
+#Install Julia, Atom and Juno
+lsb_release -c
+if [ $"Codename:	focal" ]
+then
+	sudo apt install julia
+	wget -qO - https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add -
+	sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list'
+	sudo apt update
+	sudo apt install atom
+else
+	echo "The avaiable Julia package in repository is outdated"
+fi
