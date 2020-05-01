@@ -3,14 +3,14 @@
 lsb_release -c
 if [ $"Codename:	xenial" ]
 then
-    sudo apt install wget
+	sudo apt install wget
 	wget https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/i915/kbl_guc_ver9_14.bin
 	wget https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/i915/bxt_guc_ver8_7.bin
 	sudo chmod 644 bxt_guc_ver8_7.bin kbl_guc_ver9_14.bin
 	sudo chown root:root bxt_guc_ver8_7.bin kbl_guc_ver9_14.bin
 	sudo mv bxt_guc_ver8_7.bin kbl_guc_ver9_14.bin /lib/firmware/i915
 else
-    echo "isn't xenial"
+	echo "isn't xenial"
 fi
 sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
 #Download Git for Linux and Unix
@@ -29,7 +29,7 @@ if [ $"Codename:	focal" ]
 then
 	echo "There is no support for Chromium Browser in Focal Fossa"
 else
-    sudo add-apt-repository ppa:chromium-team/stable -y
+	sudo add-apt-repository ppa:chromium-team/stable -y
 	sudo apt update
 	sudo apt install chromium-browser -y
 fi
@@ -81,5 +81,5 @@ then
 	sudo apt update
 	sudo apt install steam
 else
-    echo "No DXVK support"
+	echo "No DXVK support"
 fi
