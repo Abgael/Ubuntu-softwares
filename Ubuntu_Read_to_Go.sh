@@ -1,8 +1,7 @@
 #!/bin/bash
-sudo apt install lsb-core
 #Fixing "W: Possible missing firmware /lib/firmware/i915/kbl_guc_ver9_14.bin for module i915"
 lsb_release -c --short
-if[$"xenial"]
+if [ $xenial ]
 then
 	sudo apt install wget
 	wget https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/i915/kbl_guc_ver9_14.bin
@@ -26,7 +25,7 @@ sudo apt update
 sudo apt install spotify-client -y
 #Chromium stable
 lsb_release -c --short
-if[$"focal"]
+if [ $focal ]
 then
 	echo "There is no support for Chromium Browser in Focal Fossa"
 else
@@ -35,8 +34,8 @@ else
 	sudo apt install chromium-browser -y
 fi
 #Only in GnomeUbuntu
-#lsb_release --id
-#if[$"Codename:	GnomeUbuntu"]
+#lsb_release -i --flavour
+#if [ $GnomeUbuntu ]
 #then
 	#sudo apt-get install chrome-gnome-shell -y
 #else
@@ -58,7 +57,7 @@ sudo apt update
 sudo apt install libreoffice-common libreoffice-help-pt-br libreoffice-l10n-pt-br -y
 #Gaming Packages
 lsb_release -c --short
-if[$"bionic"]
+if [ $bionic ]
 then
 	#Installing DXVK
 	sudo add-apt-repository ppa:kisak/kisak-mesa -y
@@ -85,7 +84,7 @@ else
 fi
 #Install Julia, Atom and Juno
 lsb_release -c --short
-if[$"focal"]
+if [ $focal ]
 then
 	sudo apt install julia -y
 	wget -qO - https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add -
