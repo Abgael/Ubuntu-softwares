@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo apt install lsb-core
 #Fixing "W: Possible missing firmware /lib/firmware/i915/kbl_guc_ver9_14.bin for module i915"
 lsb_release -c --short
 if[$"xenial"]
