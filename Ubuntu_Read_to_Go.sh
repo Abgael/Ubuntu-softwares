@@ -1,7 +1,7 @@
 #!/bin/bash
 #Fixing "W: Possible missing firmware /lib/firmware/i915/kbl_guc_ver9_14.bin for module i915"
-lsb_release -c
-if[$"Codename:	xenial"]
+lsb_release -c --short
+if[$"xenial"]
 then
 	sudo apt install wget
 	wget https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/i915/kbl_guc_ver9_14.bin
@@ -24,8 +24,8 @@ echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sou
 sudo apt update
 sudo apt install spotify-client -y
 #Chromium stable
-lsb_release -c
-if[$"Codename:	focal"]
+lsb_release -c --short
+if[$"focal"]
 then
 	echo "There is no support for Chromium Browser in Focal Fossa"
 else
@@ -56,8 +56,8 @@ sudo add-apt-repository ppa:libreoffice/ppa -y
 sudo apt update
 sudo apt install libreoffice-common libreoffice-help-pt-br libreoffice-l10n-pt-br -y
 #Gaming Packages
-lsb_release -c
-if[$"Codename:	bionic"]
+lsb_release -c --short
+if[$"bionic"]
 then
 	#Installing DXVK
 	sudo add-apt-repository ppa:kisak/kisak-mesa -y
@@ -83,8 +83,8 @@ else
 	echo "No DXVK support"
 fi
 #Install Julia, Atom and Juno
-lsb_release -c
-if[$"Codename:	focal"]
+lsb_release -c --short
+if[$"focal"]
 then
 	sudo apt install julia -y
 	wget -qO - https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add -
