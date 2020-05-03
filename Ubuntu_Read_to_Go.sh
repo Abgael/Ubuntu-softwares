@@ -14,9 +14,20 @@ else
 fi
 sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
 #Download Git for Linux and Unix
+sudo apt purge git
 sudo add-apt-repository ppa:git-core/ppa -y
 sudo apt update
 sudo apt install git -y
+#Install Mercurial
+codename=$(lsb_release --codename --short)
+if [ $codename == "xenial" ]
+then
+	sudo add-apt-repository ppa:mercurial-ppa/releases -y
+	sudo apt update
+	sudo apt install mercurial
+else
+	sudo apt install mercurial
+fi
 #Spotify for Linux
 sudo apt install curl
 curl -sS https://download.spotify.com/debian/pubkey.gpg | sudo apt-key add -
