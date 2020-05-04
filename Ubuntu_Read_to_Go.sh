@@ -26,7 +26,7 @@ then
 	sudo apt update
 	sudo apt install mercurial
 else
-	sudo apt install mercurial
+	sudo apt install mercurial -y
 fi
 #Spotify for Linux
 sudo apt install curl
@@ -68,18 +68,26 @@ sudo apt update
 sudo apt install libreoffice-common libreoffice-help-pt-br libreoffice-l10n-pt-br -y
 #Gaming Packages
 codename=$(lsb_release --codename --short)
-if [ $codename == "bionic" ]
+if [ $codename == "xenial" ]
 then
+	echo "No DXVK support"
+else
 	#Installing DXVK
 	sudo add-apt-repository ppa:kisak/kisak-mesa -y
 	sudo dpkg --add-architecture i386
-	sudo apt update && sudo apt upgrade
+	sudo apt update && sudo apt upgrade -y
 	sudo apt install libgl1-mesa-glx:i386 libgl1-mesa-dri:i386
-	sudo apt install mesa-vulkan-drivers mesa-vulkan-drivers:i386 -y
+	sudo apt install mesa-vulkan-drivers mesa-vulkan-drivers:i386
 	#WineHQ Binary Packages
 	sudo dpkg --add-architecture i386
 	wget -O - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add -
-	sudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ bionic main' -y
+	codename=$(lsb_release --codename --short)
+	if [ $codename == "bionic" ]
+	then
+		sudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ bionic main' -y
+	else
+		sudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ focal main' -y
+	fi
 	sudo apt update
 	sudo apt install --install-recommends winehq-staging
 	#Stable releases for the Lutris client
@@ -90,8 +98,6 @@ then
 	sudo add-apt-repository multiverse
 	sudo apt update
 	sudo apt install steam -y
-else
-	echo "No DXVK support"
 fi
 #Install Julia, Atom and Juno
 codename=$(lsb_release --codename --short)
