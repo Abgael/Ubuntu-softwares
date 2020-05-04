@@ -29,7 +29,7 @@ else
 	sudo apt install mercurial -y
 fi
 #Spotify for Linux
-sudo apt install curl
+sudo apt install curl -y
 curl -sS https://download.spotify.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 sudo apt update
@@ -73,11 +73,20 @@ then
 	echo "No DXVK support"
 else
 	#Installing DXVK
-	sudo add-apt-repository ppa:kisak/kisak-mesa -y
-	sudo dpkg --add-architecture i386
-	sudo apt update && sudo apt upgrade -y
-	sudo apt install libgl1-mesa-glx:i386 libgl1-mesa-dri:i386
-	sudo apt install mesa-vulkan-drivers mesa-vulkan-drivers:i386
+	codename=$(lsb_release --codename --short)
+	if [ $codename == "bionic" ]
+	then
+		sudo add-apt-repository ppa:kisak/kisak-mesa -y
+		sudo dpkg --add-architecture i386
+		sudo apt update && sudo apt upgrade -y
+		sudo apt install libgl1-mesa-glx:i386 libgl1-mesa-dri:i386
+		sudo apt install mesa-vulkan-drivers mesa-vulkan-drivers:i386		
+	else
+		sudo dpkg --add-architecture i386
+		sudo apt update
+		sudo apt install libgl1-mesa-dri:i386
+		sudo apt install mesa-vulkan-drivers mesa-vulkan-drivers:i386
+	fi
 	#WineHQ Binary Packages
 	sudo dpkg --add-architecture i386
 	wget -O - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add -
