@@ -43,6 +43,14 @@ else
 	sudo add-apt-repository ppa:chromium-team/stable -y
 	sudo apt update
 	sudo apt install chromium-browser -y
+	codename=$(lsb_release --codename --short)
+	if [ $codename == "xenial" ]
+	then
+		sudo apt install unity-chromium-extension
+	else
+		sudo apt install chrome-gnome-shell
+	fi
+	
 fi
 #Only in GnomeUbuntu
 #lsb_release -i --flavour
@@ -79,8 +87,8 @@ else
 		sudo add-apt-repository ppa:kisak/kisak-mesa -y
 		sudo dpkg --add-architecture i386
 		sudo apt update && sudo apt upgrade -y
-		sudo apt install libgl1-mesa-glx:i386 libgl1-mesa-dri:i386
-		sudo apt install mesa-vulkan-drivers mesa-vulkan-drivers:i386		
+		sudo apt install libgl1-mesa-glx:i386 libgl1-mesa-dri:i386 -y
+		sudo apt install mesa-vulkan-drivers mesa-vulkan-drivers:i386 -y
 	else
 		sudo dpkg --add-architecture i386
 		sudo apt update
@@ -97,12 +105,12 @@ else
 	else
 		sudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ focal main' -y
 	fi
-	sudo apt update
+	sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
 	sudo apt install --install-recommends winehq-staging
 	#Stable releases for the Lutris client
 	sudo add-apt-repository ppa:lutris-team/lutris -y
 	sudo apt-get update
-	sudo apt-get install lutris
+	sudo apt-get install lutris -y
 	#Steam Install
 	sudo add-apt-repository multiverse
 	sudo apt update
