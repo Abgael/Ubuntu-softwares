@@ -14,7 +14,8 @@ else
 fi
 sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
 #Download Git for Linux and Unix
-sudo apt purge git
+sudo apt purge git -y
+sudo apt autoremove -y
 sudo add-apt-repository ppa:git-core/ppa -y
 sudo apt update
 sudo apt install git -y
