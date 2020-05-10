@@ -18,6 +18,15 @@ sudo apt purge git -y
 sudo apt autoremove -y
 sudo add-apt-repository ppa:git-core/ppa -y
 sudo apt update && sudo apt install git -y
+#Install Redshift Daily Builds 
+codename=$(lsb_release --codename --short)
+if [ $codename == "xenial" ]
+then
+	sudo add-apt-repository ppa:dobey/redshift-daily
+	sudo apt update && sudo apt install redshift-gtk
+else
+	echo "Night light is already supported"
+fi
 #Install Mercurial
 codename=$(lsb_release --codename --short)
 if [ $codename == "xenial" ]
