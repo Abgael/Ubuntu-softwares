@@ -17,15 +17,13 @@ sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
 sudo apt purge git -y
 sudo apt autoremove -y
 sudo add-apt-repository ppa:git-core/ppa -y
-sudo apt update
-sudo apt install git -y
+sudo apt update && sudo apt install git -y
 #Install Mercurial
 codename=$(lsb_release --codename --short)
 if [ $codename == "xenial" ]
 then
 	sudo add-apt-repository ppa:mercurial-ppa/releases -y
-	sudo apt update
-	sudo apt install mercurial
+	sudo apt update && sudo apt install mercurial
 else
 	sudo apt install mercurial -y
 fi
@@ -33,8 +31,7 @@ fi
 sudo apt install curl -y
 curl -sS https://download.spotify.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-sudo apt update
-sudo apt install spotify-client -y
+sudo apt update && sudo apt install spotify-client -y
 #Chromium stable
 codename=$(lsb_release --codename --short)
 if [ $codename == "focal" ]
@@ -42,8 +39,7 @@ then
 	echo "There is no support for Chromium Browser in Focal Fossa"
 else
 	sudo add-apt-repository ppa:chromium-team/stable -y
-	sudo apt update
-	sudo apt install chromium-browser -y
+	sudo apt update && sudo apt install chromium-browser -y
 	codename=$(lsb_release --codename --short)
 	if [ $codename == "xenial" ]
 	then
@@ -63,18 +59,15 @@ fi
 #fi
 #qBittorrent Stable
 sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable -y
-sudo apt update
-sudo apt install qbittorrent -y
+sudo apt update && sudo apt install qbittorrent -y
 #Firefox ESR
 sudo apt purge firefox firefox-locale-en firefox-locale-pt unity-scope-firefoxbookmarks -y
 sudo add-apt-repository ppa:mozillateam/ppa -y
-sudo apt update
-sudo apt install firefox-esr firefox-esr-locale-pt
+sudo apt update && sudo apt install firefox-esr firefox-esr-locale-pt
 #Installing LibreOffice on Linux
 sudo apt purge libreoffice-common -y
 sudo add-apt-repository ppa:libreoffice/ppa -y
-sudo apt update
-sudo apt install libreoffice-common libreoffice-help-pt-br libreoffice-l10n-pt-br -y
+sudo apt update && sudo apt install libreoffice-common libreoffice-help-pt-br libreoffice-l10n-pt-br -y
 #Gaming Packages
 codename=$(lsb_release --codename --short)
 if [ $codename == "xenial" ]
@@ -92,8 +85,7 @@ else
 		sudo apt install mesa-vulkan-drivers mesa-vulkan-drivers:i386 -y
 	else
 		sudo dpkg --add-architecture i386
-		sudo apt update
-		sudo apt install libgl1-mesa-dri:i386
+		sudo apt update && sudo apt install libgl1-mesa-dri:i386
 		sudo apt install mesa-vulkan-drivers mesa-vulkan-drivers:i386
 	fi
 	#WineHQ Binary Packages
@@ -110,12 +102,10 @@ else
 	sudo apt install --install-recommends winehq-staging
 	#Stable releases for the Lutris client
 	sudo add-apt-repository ppa:lutris-team/lutris -y
-	sudo apt-get update
-	sudo apt-get install lutris -y
+	sudo apt update && sudo apt install lutris -y
 	#Steam Install
 	sudo add-apt-repository multiverse
-	sudo apt update
-	sudo apt install steam -y
+	sudo apt update && sudo apt install steam -y
 fi
 #Install Julia, Atom and Juno
 codename=$(lsb_release --codename --short)
@@ -124,8 +114,7 @@ then
 	sudo apt install julia -y
 	wget -qO - https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add -
 	sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list'
-	sudo apt update
-	sudo apt install atom
+	sudo apt update && sudo apt install atom
 else
 	echo "The avaiable Julia package in repository is outdated"
 fi
