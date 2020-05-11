@@ -22,8 +22,8 @@ sudo apt update && sudo apt install git -y
 codename=$(lsb_release --codename --short)
 if [ $codename == "xenial" ]
 then
-	sudo add-apt-repository ppa:dobey/redshift-daily
-	sudo apt update && sudo apt install redshift-gtk
+	sudo add-apt-repository ppa:dobey/redshift-daily -y
+	sudo apt update && sudo apt install redshift-gtk -y
 else
 	echo "Night light is already supported"
 fi
@@ -32,7 +32,7 @@ codename=$(lsb_release --codename --short)
 if [ $codename == "xenial" ]
 then
 	sudo add-apt-repository ppa:mercurial-ppa/releases -y
-	sudo apt update && sudo apt install mercurial
+	sudo apt update && sudo apt install mercurial -y
 else
 	sudo apt install mercurial -y
 fi
