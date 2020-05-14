@@ -23,6 +23,7 @@ codename=$(lsb_release --codename --short)
 if [ $codename == "xenial" ]
 then
 	sudo add-apt-repository ppa:dobey/redshift-daily -y
+	sudo apt install geoclue-2.0
 	sudo apt update && sudo apt install redshift-gtk -y
 else
 	echo "Night light is already supported"
