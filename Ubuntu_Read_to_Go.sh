@@ -33,12 +33,6 @@ then
 else
 	sudo apt install mercurial -y
 fi
-#Spotify for Linux
-sudo apt install curl -y
-curl -sS https://download.spotify.com/debian/pubkey.gpg | sudo apt-key add - 
-curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add - 
-echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-sudo apt-get update && sudo apt-get install spotify-client
 #Chromium stable
 codename=$(lsb_release --codename --short)
 if [ $codename == "focal" ]
@@ -71,7 +65,7 @@ sudo apt update && sudo apt install qbittorrent -y
 sudo apt purge firefox firefox-locale-en firefox-locale-pt
 sudo apt purge unity-scope-firefoxbookmarks -y
 sudo add-apt-repository ppa:mozillateam/ppa -y
-sudo apt update && sudo apt install firefox-esr firefox-esr-locale-pt
+sudo apt update && sudo apt install firefox-esr firefox-esr-locale-pt -y
 #Installing LibreOffice on Linux
 sudo apt purge libreoffice-common -y
 sudo add-apt-repository ppa:libreoffice/ppa -y
@@ -88,23 +82,33 @@ then
 	sudo apt install libgl1-mesa-glx:i386 -y
 	sudo apt install mesa-vulkan-drivers mesa-vulkan-drivers:i386 -y
 fi
-	#WineHQ Binary Packages
-	sudo dpkg --add-architecture i386
-	wget -nc https://dl.winehq.org/wine-builds/winehq.key
-	sudo apt-key add winehq.key	
-	if [ $codename == "bionic" ]
-	then
-		sudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ bionic main' -y
-	elif [ $codename == "focal" ]
-		sudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ focal main' -y
-	fi
-	sudo apt update
-	sudo apt install --install-recommends winehq-staging
-	#Stable releases for the Lutris client
-	sudo add-apt-repository ppa:lutris-team/lutris
-	sudo apt update
-	sudo apt install lutris
-fi
+#WineHQ Binary Packages
+sudo dpkg --add-architecture i386
+wget -nc https://dl.winehq.org/wine-builds/winehq.key
+sudo apt-key add winehq.key	
+case codename=$(lsb_release --codename --short) in
+xenial)
+	sudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ xenial main' -y
+	;;
+bionic)
+	sudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ bionic main' -y
+	;;
+focal)
+	sudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ focal main' -y
+	;;
+esac
+sudo apt update
+sudo apt install --install-recommends winehq-staging
+#Stable releases for the Lutris client
+sudo add-apt-repository ppa:lutris-team/lutris
+sudo apt update
+sudo apt install lutris
+#Spotify for Linux
+sudo apt install curl -y
+curl -sS https://download.spotify.com/debian/pubkey.gpg | sudo apt-key add - 
+curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add - 
+echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+sudo apt-get update && sudo apt-get install spotify-client -y
 #Install Julia, Atom and Juno
 codename=$(lsb_release --codename --short)
 if [ $codename == "focal" ]
