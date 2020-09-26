@@ -102,7 +102,7 @@ sudo apt install --install-recommends winehq-staging
 #Stable releases for the Lutris client
 sudo add-apt-repository ppa:lutris-team/lutris
 sudo apt update
-sudo apt install lutris
+sudo apt install lutris -y
 #Spotify for Linux
 sudo apt install curl -y
 curl -sS https://download.spotify.com/debian/pubkey.gpg | sudo apt-key add - 
