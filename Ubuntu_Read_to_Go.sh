@@ -75,7 +75,11 @@ sudo add-apt-repository ppa:libreoffice/ppa -y
 codename=$(lsb_release --codename --short)
 if [ $codename == "bionic" -o "focal" ]
 then
-	#Installing DXVK
+	#Enabling DXVK
+	if [ $codename == "bionic" ]
+	then
+		sudo apt-get install --install-recommends linux-generic-hwe-18.04 xserver-xorg-hwe-18.04
+	fi
 	sudo add-apt-repository ppa:kisak/kisak-mesa -y
 	sudo dpkg --add-architecture i386
 	sudo apt update && sudo apt upgrade -y
