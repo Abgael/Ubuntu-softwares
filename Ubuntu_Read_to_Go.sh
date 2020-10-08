@@ -1,15 +1,23 @@
 #!/bin/bash
 #Fixing "W: Possible missing firmware /lib/firmware/i915/kbl_guc_ver9_14.bin for module i915"
 codename=$(lsb_release --codename --short)
-if [ $codename == "xenial" ]
-then
+case codename=$(lsb_release --codename --short) in
+xenial)
 	sudo apt install wget
 	wget https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/i915/kbl_guc_ver9_14.bin
 	wget https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/i915/bxt_guc_ver8_7.bin
 	sudo chmod 644 bxt_guc_ver8_7.bin kbl_guc_ver9_14.bin
 	sudo chown root:root bxt_guc_ver8_7.bin kbl_guc_ver9_14.bin
 	sudo mv bxt_guc_ver8_7.bin kbl_guc_ver9_14.bin /lib/firmware/i915
-fi
+bionic)
+	sudo apt install wget
+	wget https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/rtl_nic/rtl8125a-3.fw
+	wget https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/rtl_nic/rtl8168fp-3.fw
+	sudo chmod 644 rtl8125a-3.fw rtl8168fp-3.fw
+	sudo chown root:root rtl8125a-3.fw rtl8168fp-3.fw
+	sudo mv rtl8125a-3.fw rtl8168fp-3.fw /lib/firmware/rtl_nic
+	;;
+esac
 sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
 #Download Git for Linux and Unix
 sudo apt purge git -y
