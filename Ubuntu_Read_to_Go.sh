@@ -1,15 +1,18 @@
 #!/bin/bash
-#Fixing "W: Possible missing firmware /lib/firmware/i915/kbl_guc_ver9_14.bin for module i915"
-codename=$(lsb_release --codename --short)
 case codename=$(lsb_release --codename --short) in
 xenial)
+	#Fixing "W: Possible missing firmware /lib/firmware/i915/kbl_guc_ver9_14.bin for module i915"
+	#Fixing "W: Possible missing firmware /lib/firmware/i915/kbl_guc_ver8_7.bin for module i915"
 	sudo apt install wget
 	wget https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/i915/kbl_guc_ver9_14.bin
 	wget https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/i915/bxt_guc_ver8_7.bin
 	sudo chmod 644 bxt_guc_ver8_7.bin kbl_guc_ver9_14.bin
 	sudo chown root:root bxt_guc_ver8_7.bin kbl_guc_ver9_14.bin
 	sudo mv bxt_guc_ver8_7.bin kbl_guc_ver9_14.bin /lib/firmware/i915
+	;;
 bionic)
+	#Fixing "W: Possible missing firmware /lib/firmware/rtl_nic/rtl8125a-3.fw for module r8169"
+	#Fixing "W: Possible missing firmware /lib/firmware/rtl_nic/rtl8168fp-3.fw for module r8169"
 	sudo apt install wget
 	wget https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/rtl_nic/rtl8125a-3.fw
 	wget https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/rtl_nic/rtl8168fp-3.fw
@@ -70,7 +73,7 @@ fi
 sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable -y
 sudo apt update && sudo apt install qbittorrent -y
 #Firefox ESR
-sudo apt purge firefox firefox-locale-en firefox-locale-pt
+sudo apt purge firefox firefox-locale-en firefox-locale-pt -y
 sudo apt purge unity-scope-firefoxbookmarks -y
 sudo add-apt-repository ppa:mozillateam/ppa -y
 sudo apt update && sudo apt install firefox-esr firefox-esr-locale-pt -y
@@ -112,7 +115,7 @@ esac
 sudo apt update
 sudo apt install --install-recommends winehq-staging
 #Stable releases for the Lutris client
-sudo add-apt-repository ppa:lutris-team/lutris
+sudo add-apt-repository ppa:lutris-team/lutris -y
 sudo apt update
 sudo apt install lutris -y
 #Spotify for Linux
