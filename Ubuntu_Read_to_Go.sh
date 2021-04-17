@@ -44,23 +44,23 @@ then
 else
 	sudo apt install mercurial -y
 fi
-#Chromium stable
-codename=$(lsb_release --codename --short)
-if [ $codename == "focal" ]
-then
-	echo "There is no support for Chromium Browser in Focal Fossa"
-else
-	sudo add-apt-repository ppa:chromium-team/stable -y
-	sudo apt update && sudo apt install chromium-browser -y
-	codename=$(lsb_release --codename --short)
-	if [ $codename == "xenial" ]
-	then
-		sudo apt install unity-chromium-extension
-	else
-		sudo apt install chrome-gnome-shell
-	fi
-	
-fi
+#Chromium stable[DEPRECATED]
+#codename=$(lsb_release --codename --short)
+#if [ $codename == "focal" ]
+#then
+#	echo "There is no support for Chromium Browser in Focal Fossa"
+#else
+#	sudo add-apt-repository ppa:chromium-team/stable -y
+#	sudo apt update && sudo apt install chromium-browser -y
+#	codename=$(lsb_release --codename --short)
+#	if [ $codename == "xenial" ]
+#	then
+#		sudo apt install unity-chromium-extension
+#	else
+#		sudo apt install chrome-gnome-shell
+#	fi
+#	
+#fi
 #Only in GnomeUbuntu
 #lsb_release -i --flavour
 #if [ $GnomeUbuntu ]
