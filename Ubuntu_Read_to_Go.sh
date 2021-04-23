@@ -1,9 +1,10 @@
 #!/bin/bash
+sudo apt install wget
+sudo apt install gdebi
 case codename=$(lsb_release --codename --short) in
 xenial)
 	#Fixing "W: Possible missing firmware /lib/firmware/i915/kbl_guc_ver9_14.bin for module i915"
 	#Fixing "W: Possible missing firmware /lib/firmware/i915/kbl_guc_ver8_7.bin for module i915"
-	sudo apt install wget
 	wget https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/i915/kbl_guc_ver9_14.bin
 	wget https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/i915/bxt_guc_ver8_7.bin
 	sudo chmod 644 bxt_guc_ver8_7.bin kbl_guc_ver9_14.bin
@@ -13,7 +14,6 @@ xenial)
 bionic)
 	#Fixing "W: Possible missing firmware /lib/firmware/rtl_nic/rtl8125a-3.fw for module r8169"
 	#Fixing "W: Possible missing firmware /lib/firmware/rtl_nic/rtl8168fp-3.fw for module r8169"
-	sudo apt install wget
 	wget https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/rtl_nic/rtl8125a-3.fw
 	wget https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/rtl_nic/rtl8168fp-3.fw
 	sudo chmod 644 rtl8125a-3.fw rtl8168fp-3.fw
