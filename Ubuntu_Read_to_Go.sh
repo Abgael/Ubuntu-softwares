@@ -1,6 +1,7 @@
 #!/bin/bash
-sudo apt install wget
-sudo apt install gdebi
+sudo apt install wget		#Package downloader
+sudo apt install gdebi		#Debian package installer
+sudo apt install ppa-purge	#PPA remover
 case codename=$(lsb_release --codename --short) in
 xenial)
 	#Fixing "W: Possible missing firmware /lib/firmware/i915/kbl_guc_ver9_14.bin for module i915"
