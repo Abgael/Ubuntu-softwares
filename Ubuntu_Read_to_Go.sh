@@ -126,13 +126,11 @@ curl -sS https://download.spotify.com/debian/pubkey.gpg | sudo apt-key add -
 curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add - 
 echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 sudo apt-get update && sudo apt-get install spotify-client -y
-#Install Julia, Atom and Juno
-codename=$(lsb_release --codename --short)
-if [ $codename == "focal" ]
-then
-	sudo apt install julia -y
-	wget -qO - https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add -
-	sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list'
-	sudo apt-get update
-	sudo apt-get install atom
-fi
+#Install Julia
+wget https://julialang-s3.julialang.org/bin/linux/x64/1.0/julia-1.0.5-linux-x86_64.tar.gz
+tar zxvf julia-1.0.5-linux-x86_64.tar.gz
+#Install Atom
+wget -qO - https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add -
+sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list'
+sudo apt-get update
+sudo apt-get install atom
