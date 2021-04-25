@@ -24,6 +24,24 @@ bionic)
 	;;
 esac
 sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
+#Disabling Snaps in Ubuntu 20.04 LTS
+codename=$(lsb_release --codename --short)
+if [ $codename == "focal" ]
+then
+	#Remove existing Snaps
+	sudo snap remove snap-store
+	sudo snap remove gtk-common-themes
+	sudo snap remove gnome-3-34-1804
+	sudo snap remove core18
+	sudo snap remove snapd
+	#Remove and purge the snapd package
+	sudo apt purge snapd
+	#Remove any lingering snap directories
+	rm -rf ~/snap
+	sudo rm -rf /snap
+	sudo rm -rf /var/snap
+	sudo rm -rf /var/lib/snapd
+fi
 #Download Git for Linux and Unix
 sudo apt purge git -y
 sudo apt autoremove -y
