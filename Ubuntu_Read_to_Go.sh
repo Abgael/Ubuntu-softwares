@@ -3,7 +3,7 @@ sudo apt install wget			#Package downloader
 sudo apt install gdebi			#Debian package installer
 sudo apt install ppa-purge		#PPA remover
 sudo apt-get install openjdk-11-jdk	#Install Java Development Kit
-#Install Redshift Daily Builds 
+#GUI utility to change the CPU frequency
 codename=$(lsb_release --codename --short)
 if [ $codename == "focal" ]
 then
