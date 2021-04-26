@@ -3,6 +3,12 @@ sudo apt install wget			#Package downloader
 sudo apt install gdebi			#Debian package installer
 sudo apt install ppa-purge		#PPA remover
 sudo apt-get install openjdk-11-jdk	#Install Java Development Kit
+#Install Redshift Daily Builds 
+codename=$(lsb_release --codename --short)
+if [ $codename == "focal" ]
+then
+	sudo apt install cpupower-gui
+fi
 case codename=$(lsb_release --codename --short) in
 xenial)
 	#Fixing "W: Possible missing firmware /lib/firmware/i915/kbl_guc_ver9_14.bin for module i915"
