@@ -3,7 +3,7 @@ sudo apt install wget			#Package downloader
 sudo apt install gdebi			#Debian package installer
 sudo apt install ppa-purge		#PPA remover
 sudo apt install openjdk-11-jdk		#Install Java Development Kit
-sudo apt install checkinstall
+sudo apt install checkinstall		#Track installation of local software, and produce a binary manageable with your package management software
 #GUI utility to change the CPU frequency
 codename=$(lsb_release --codename --short)
 if [ $codename == "focal" ]
