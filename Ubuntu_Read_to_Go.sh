@@ -10,7 +10,7 @@ then
 	sudo apt install cpupower-gui
 fi
 #Building and istalling OSS4
-sudo apt install gcc binutils make gawk libgtk2.0-0 libgtk2.0-dev libtool
+sudo apt install build-essential gcc binutils make gawk libgtk2.0-0 libgtk2.0-dev libcanberra-gtk-module libtool libsdl1.2debian libsdl1.2-dev
 wget http://www.4front-tech.com/developer/sources/stable/gpl/oss-v4.2-build2020-src-gpl.tar.bz2
 
 ./configure
