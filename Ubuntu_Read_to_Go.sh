@@ -11,9 +11,12 @@ then
 fi
 #Building and istalling OSS4
 sudo apt install build-essential gcc binutils make gawk libgtk2.0-0 libgtk2.0-dev libcanberra-gtk-module libtool libsdl1.2debian libsdl1.2-dev
-wget http://www.4front-tech.com/developer/sources/stable/gpl/oss-v4.2-build2020-src-gpl.tar.bz2
-
-./configure
+sudo git clone git://git.code.sf.net/p/opensound/git /usr/src/oss
+cd /usr/src
+rm -rf ~/oss
+mkdir ~/oss
+cd ~/oss
+/usr/src/oss*/configure
 make
 sudo checkinstall
 #sudo apt install liboss4-salsa-asound2 liboss4-salsa2 oss4-base oss4-dev oss4-dkms oss4-gtk oss4-source
