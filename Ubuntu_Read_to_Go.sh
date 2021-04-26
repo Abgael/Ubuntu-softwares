@@ -2,7 +2,8 @@
 sudo apt install wget			#Package downloader
 sudo apt install gdebi			#Debian package installer
 sudo apt install ppa-purge		#PPA remover
-sudo apt-get install openjdk-11-jdk	#Install Java Development Kit
+sudo apt install openjdk-11-jdk		#Install Java Development Kit
+sudo apt install checkinstall
 #GUI utility to change the CPU frequency
 codename=$(lsb_release --codename --short)
 if [ $codename == "focal" ]
@@ -13,11 +14,11 @@ fi
 sudo apt install build-essential gcc binutils make gawk libgtk2.0-0 libgtk2.0-dev libcanberra-gtk-module libtool libsdl1.2debian libsdl1.2-dev
 sudo git clone git://git.code.sf.net/p/opensound/git /usr/src/oss
 cd /usr/src
-rm -rf ~/oss
-mkdir ~/oss
+sudo rm -rf ~/oss
+sudo mkdir ~/oss
 cd ~/oss
-/usr/src/oss*/configure
-make
+sudo /usr/src/oss*/configure
+sudo make
 sudo checkinstall
 #sudo apt install liboss4-salsa-asound2 liboss4-salsa2 oss4-base oss4-dev oss4-dkms oss4-gtk oss4-source
 #Fixing missing firmwares
