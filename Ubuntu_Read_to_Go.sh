@@ -2,7 +2,7 @@
 sudo apt install wget			#Package downloader
 sudo apt install gdebi			#Debian package installer
 sudo apt install ppa-purge		#PPA remover
-sudo apt install openjdk-11-jdk		#Install Java Development Kit
+sudo apt install openjdk-11-jdk -y	#Install Java Development Kit
 sudo apt install checkinstall		#Track installation of local software, and produce a binary manageable with your package management software
 #GUI utility to change the CPU frequency
 codename=$(lsb_release --codename --short)
@@ -54,7 +54,7 @@ then
 	sudo snap remove core18
 	sudo snap remove snapd
 	#Remove and purge the snapd package
-	sudo apt purge snapd
+	sudo apt purge snapd -y
 	#Remove any lingering snap directories
 	rm -rf ~/snap
 	sudo rm -rf /snap
@@ -169,5 +169,15 @@ tar zxvf julia-1.0.5-linux-x86_64.tar.gz
 #Install Atom
 wget -qO - https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add -
 sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list'
-sudo apt-get update
-sudo apt-get install atom
+sudo apt update
+sudo apt install atom
+# KVM/Installation
+#Installation of KVM
+sudo apt install cpu-checker
+sudo apt install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils
+sudo apt install virt-viewer
+#Add Users to Groups
+sudo adduser `id -un` libvirt
+sudo adduser `id -un` kvm
+#Optional: Install virt-manager (graphical user interface)
+sudo apt-get install virt-manager
