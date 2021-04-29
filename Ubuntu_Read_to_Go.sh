@@ -11,7 +11,8 @@ then
 	sudo apt install cpupower-gui
 fi
 #Building and istalling OSS4
-sudo apt install build-essential gcc binutils make gawk libgtk2.0-0 libgtk2.0-dev libcanberra-gtk-module libtool libsdl1.2debian libsdl1.2-dev
+: '
+sudo apt install build-essential gcc binutils make gawk libgtk2.0-dev libcanberra-gtk-module libtool libsdl1.2-dev
 sudo git clone git://git.code.sf.net/p/opensound/git /usr/src/oss
 cd /usr/src
 sudo rm -rf ~/oss
@@ -20,6 +21,7 @@ cd ~/oss
 sudo /usr/src/oss*/configure
 sudo make
 sudo checkinstall
+'
 #sudo apt install liboss4-salsa-asound2 liboss4-salsa2 oss4-base oss4-dev oss4-dkms oss4-gtk oss4-source
 #Fixing missing firmwares
 case codename=$(lsb_release --codename --short) in
@@ -84,30 +86,34 @@ else
 	sudo apt install mercurial -y
 fi
 #Chromium stable[DEPRECATED]
-#codename=$(lsb_release --codename --short)
-#if [ $codename == "focal" ]
-#then
-#	echo "There is no support for Chromium Browser in Focal Fossa"
-#else
-#	sudo add-apt-repository ppa:chromium-team/stable -y
-#	sudo apt update && sudo apt install chromium-browser -y
-#	codename=$(lsb_release --codename --short)
-#	if [ $codename == "xenial" ]
-#	then
-#		sudo apt install unity-chromium-extension
-#	else
-#		sudo apt install chrome-gnome-shell
-#	fi
-#	
-#fi
+: '
+codename=$(lsb_release --codename --short)
+if [ $codename == "focal" ]
+then
+	echo "There is no support for Chromium Browser in Focal Fossa"
+else
+	sudo add-apt-repository ppa:chromium-team/stable -y
+	sudo apt update && sudo apt install chromium-browser -y
+	codename=$(lsb_release --codename --short)
+	if [ $codename == "xenial" ]
+	then
+		sudo apt install unity-chromium-extension
+	else
+		sudo apt install chrome-gnome-shell
+	fi
+	
+fi
+'
 #Only in GnomeUbuntu
-#lsb_release -i --flavour
-#if [ $GnomeUbuntu ]
-#then
-	#sudo apt-get install chrome-gnome-shell -y
-#else
-    	#echo "GNOME Shell integration for Chrome already supported"
-#fi
+: '
+lsb_release -i --flavour
+if [ $GnomeUbuntu ]
+then
+	sudo apt-get install chrome-gnome-shell -y
+else
+    	echo "GNOME Shell integration for Chrome already supported"
+fi
+'
 #qBittorrent Stable
 sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable -y
 sudo apt update && sudo apt install qbittorrent -y
