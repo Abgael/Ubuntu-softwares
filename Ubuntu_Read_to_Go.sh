@@ -117,11 +117,12 @@ fi
 #qBittorrent Stable
 sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable -y
 sudo apt update && sudo apt install qbittorrent -y
-#Firefox ESR
+#Firefox ESR and Thunderbird
 sudo apt purge firefox firefox-locale-en firefox-locale-pt -y
 sudo apt purge unity-scope-firefoxbookmarks -y
 sudo add-apt-repository ppa:mozillateam/ppa -y
-sudo apt update && sudo apt install firefox-esr firefox-esr-locale-pt -y
+sudo apt update && sudo apt install firefox-esr-locale-pt -y
+sudo apt install thunderbird-locale-pt-br
 #Installing LibreOffice on Linux
 sudo apt purge libreoffice-common -y
 sudo add-apt-repository ppa:libreoffice/ppa -y
