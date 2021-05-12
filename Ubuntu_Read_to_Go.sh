@@ -183,6 +183,7 @@ sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ 
 sudo apt update
 sudo apt install atom
 # KVM/Installation
+: '
 #Installation of KVM
 sudo apt install cpu-checker
 sudo apt install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils
@@ -192,3 +193,4 @@ sudo adduser `id -un` libvirt
 sudo adduser `id -un` kvm
 #Optional: Install virt-manager (graphical user interface)
 sudo apt-get install virt-manager
+'
