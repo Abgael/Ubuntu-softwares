@@ -1,30 +1,28 @@
 #!/bin/bash
+#Disabling Snaps in Ubuntu 20.04 LTS
+codename=$(lsb_release --codename --short)
+if [ $codename == "focal" ]
+then
+	#Remove existing Snaps
+	sudo snap remove snap-store
+	sudo snap remove gtk-common-themes
+	sudo snap remove gnome-3-34-1804
+	sudo snap remove core18
+	sudo snap remove snapd
+	#Remove and purge the snapd package
+	sudo apt purge snapd -y
+	#Remove any lingering snap directories
+	rm -rf ~/snap
+	sudo rm -rf /snap
+	sudo rm -rf /var/snap
+	sudo rm -rf /var/lib/snapd
+fi
 sudo apt install wget			#The non-interactive network downloader
 sudo apt install curl -y		#transfer a URL
 sudo apt install synaptic		#graphical management of software packages
 sudo apt install gdebi			#Simple tool to install deb files
 sudo apt install ppa-purge		#disables a PPA and reverts to official packages
 sudo apt install openjdk-11-jdk -y	#Install Java Development Kit
-#sudo apt install checkinstall		#Track installation of local software, and produce a binary manageable with your package management software
-#GUI utility to change the CPU frequency
-codename=$(lsb_release --codename --short)
-if [ $codename == "focal" ]
-then
-	sudo apt install cpupower-gui
-fi
-#Building and istalling OSS4
-: '
-sudo apt install build-essential gcc binutils make gawk libgtk2.0-dev libcanberra-gtk-module libtool libsdl1.2-dev
-sudo git clone git://git.code.sf.net/p/opensound/git /usr/src/oss
-cd /usr/src
-sudo rm -rf ~/oss
-sudo mkdir ~/oss
-cd ~/oss
-sudo /usr/src/oss*/configure
-sudo make
-sudo checkinstall
-'
-#sudo apt install liboss4-salsa-asound2 liboss4-salsa2 oss4-base oss4-dev oss4-dkms oss4-gtk oss4-source
 #Fixing missing firmwares
 case codename=$(lsb_release --codename --short) in
 xenial)
@@ -47,24 +45,6 @@ bionic)
 	;;
 esac
 sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
-#Disabling Snaps in Ubuntu 20.04 LTS
-codename=$(lsb_release --codename --short)
-if [ $codename == "focal" ]
-then
-	#Remove existing Snaps
-	sudo snap remove snap-store
-	sudo snap remove gtk-common-themes
-	sudo snap remove gnome-3-34-1804
-	sudo snap remove core18
-	sudo snap remove snapd
-	#Remove and purge the snapd package
-	sudo apt purge snapd -y
-	#Remove any lingering snap directories
-	rm -rf ~/snap
-	sudo rm -rf /snap
-	sudo rm -rf /var/snap
-	sudo rm -rf /var/lib/snapd
-fi
 #Download Git for Linux and Unix
 sudo apt purge git -y
 sudo apt autoremove -y
@@ -87,35 +67,6 @@ then
 else
 	sudo apt install mercurial -y
 fi
-#Chromium stable[DEPRECATED]
-: '
-codename=$(lsb_release --codename --short)
-if [ $codename == "focal" ]
-then
-	echo "There is no support for Chromium Browser in Focal Fossa"
-else
-	sudo add-apt-repository ppa:chromium-team/stable -y
-	sudo apt update && sudo apt install chromium-browser -y
-	codename=$(lsb_release --codename --short)
-	if [ $codename == "xenial" ]
-	then
-		sudo apt install unity-chromium-extension
-	else
-		sudo apt install chrome-gnome-shell
-	fi
-	
-fi
-'
-#Only in GnomeUbuntu
-: '
-lsb_release -i --flavour
-if [ $GnomeUbuntu ]
-then
-	sudo apt-get install chrome-gnome-shell -y
-else
-    	echo "GNOME Shell integration for Chrome already supported"
-fi
-'
 #qBittorrent Stable
 sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable -y
 sudo apt update && sudo apt install qbittorrent -y
@@ -127,9 +78,6 @@ sudo apt update && sudo apt install firefox-esr-locale-pt -y
 sudo apt install thunderbird-locale-pt-br
 #Installing LibreOffice on Linux
 sudo apt purge libreoffice-common -y
-sudo add-apt-repository ppa:libreoffice/ppa -y
-#Uncomment the line below to install the PPA version
-#sudo apt update && sudo apt install libreoffice-common libreoffice-help-pt-br libreoffice-l10n-pt-br -y
 #Gaming Packages
 codename=$(lsb_release --codename --short)
 if [ $codename == "bionic" -o "focal" ]
