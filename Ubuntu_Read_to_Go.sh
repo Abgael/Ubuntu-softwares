@@ -1,9 +1,11 @@
 #!/bin/bash
-sudo apt install wget			#Package downloader
-sudo apt install gdebi			#Debian package installer
-sudo apt install ppa-purge		#PPA remover
+sudo apt install wget			#The non-interactive network downloader
+sudo apt install curl -y		#transfer a URL
+sudo apt install synaptic		#graphical management of software packages
+sudo apt install gdebi			#Simple tool to install deb files
+sudo apt install ppa-purge		#disables a PPA and reverts to official packages
 sudo apt install openjdk-11-jdk -y	#Install Java Development Kit
-sudo apt install checkinstall		#Track installation of local software, and produce a binary manageable with your package management software
+#sudo apt install checkinstall		#Track installation of local software, and produce a binary manageable with your package management software
 #GUI utility to change the CPU frequency
 codename=$(lsb_release --codename --short)
 if [ $codename == "focal" ]
@@ -137,11 +139,14 @@ then
 	then
 		sudo apt-get install --install-recommends linux-generic-hwe-18.04 xserver-xorg-hwe-18.04
 	fi
-	sudo add-apt-repository ppa:kisak/kisak-mesa -y
+	sudo add-apt-repository ppa:kisak/turtle
 	sudo dpkg --add-architecture i386
-	sudo apt update && sudo apt upgrade -y
-	sudo apt install libgl1-mesa-glx:i386 -y
-	sudo apt install mesa-vulkan-drivers mesa-vulkan-drivers:i386 -y
+	sudo apt update
+	sudo apt upgrade
+	#Intel drivers
+	sudo apt install mesa-vulkan-drivers libglx-mesa0:i386 mesa-vulkan-drivers:i386 libgl1-mesa-dri:i386
+	#test
+	sudo apt install vulkan-tools
 fi
 #WineHQ Binary Packages
 sudo dpkg --add-architecture i386
@@ -165,15 +170,14 @@ sudo add-apt-repository ppa:lutris-team/lutris -y
 sudo apt update
 sudo apt install lutris -y
 #Spotify for Linux
-sudo apt install curl -y
-curl -sS https://download.spotify.com/debian/pubkey.gpg | sudo apt-key add - 
-curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add - 
+curl -sS https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg | sudo apt-key add - 
 echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-sudo apt-get update && sudo apt-get install spotify-client -y
+sudo apt-get update && sudo apt-get install spotify-client
 #VLC media player
 sudo apt install vlc
 #Rhythmbox
 sudo apt install rhythmbox
+: '
 #Install Julia
 wget https://julialang-s3.julialang.org/bin/linux/x64/1.0/julia-1.0.5-linux-x86_64.tar.gz
 tar zxvf julia-1.0.5-linux-x86_64.tar.gz
@@ -183,7 +187,6 @@ sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ 
 sudo apt update
 sudo apt install atom
 # KVM/Installation
-: '
 #Installation of KVM
 sudo apt install cpu-checker
 sudo apt install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils
