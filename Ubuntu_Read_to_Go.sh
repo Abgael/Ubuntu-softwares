@@ -1,4 +1,5 @@
 #!/bin/bash
+
 #Disabling Snaps in Ubuntu 20.04 LTS
 codename=$(lsb_release --codename --short)
 if [ $codename == "focal" ]
@@ -17,12 +18,7 @@ then
 	sudo rm -rf /var/snap
 	sudo rm -rf /var/lib/snapd
 fi
-sudo apt install wget			#The non-interactive network downloader
-sudo apt install curl -y		#transfer a URL
-sudo apt install synaptic		#graphical management of software packages
-sudo apt install gdebi			#Simple tool to install deb files
-sudo apt install ppa-purge		#disables a PPA and reverts to official packages
-sudo apt install openjdk-11-jdk -y	#Install Java Development Kit
+
 #Fixing missing firmwares
 case codename=$(lsb_release --codename --short) in
 xenial)
@@ -44,40 +40,7 @@ bionic)
 	sudo mv rtl8125a-3.fw rtl8168fp-3.fw /lib/firmware/rtl_nic
 	;;
 esac
-sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
-#Download Git for Linux and Unix
-sudo apt purge git -y
-sudo apt autoremove -y
-sudo add-apt-repository ppa:git-core/ppa -y
-sudo apt update && sudo apt install git -y
-#Install Redshift Daily Builds 
-codename=$(lsb_release --codename --short)
-if [ $codename == "xenial" ]
-then
-	sudo add-apt-repository ppa:dobey/redshift-daily -y
-	sudo apt install geoclue-2.0 -y
-	sudo apt update && sudo apt install redshift-gtk -y
-fi
-#Install Mercurial
-codename=$(lsb_release --codename --short)
-if [ $codename == "xenial" ]
-then
-	sudo add-apt-repository ppa:mercurial-ppa/releases -y
-	sudo apt update && sudo apt install mercurial -y
-else
-	sudo apt install mercurial -y
-fi
-#qBittorrent Stable
-sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable -y
-sudo apt update && sudo apt install qbittorrent -y
-#Firefox ESR and Thunderbird
-sudo apt purge firefox firefox-locale-en firefox-locale-pt -y
-sudo apt purge unity-scope-firefoxbookmarks -y
-sudo add-apt-repository ppa:mozillateam/ppa -y
-sudo apt update && sudo apt install firefox-esr-locale-pt -y
-sudo apt install thunderbird-locale-pt-br
-#Installing LibreOffice on Linux
-sudo apt purge libreoffice-common -y
+
 #Gaming Packages
 codename=$(lsb_release --codename --short)
 if [ $codename == "bionic" -o "focal" ]
@@ -96,6 +59,57 @@ then
 	#test
 	sudo apt install vulkan-tools
 fi
+
+#Installing utilities
+sudo apt install intel-media-va-driver-non-free vainfo	#VAAPI driver for the Intel GEN8+ Graphics family
+sudo apt install ubuntu-restricted-extras		#Commonly used media codecs and fonts for Ubuntu
+sudo apt install wget					#The non-interactive network downloader
+sudo apt install curl -y				#transfer a URL
+sudo apt install synaptic				#graphical management of software packages
+sudo apt install gdebi					#Simple tool to install deb files
+sudo apt install ppa-purge				#disables a PPA and reverts to official packages
+sudo apt install openjdk-11-jdk -y			#Install Java Development Kit
+
+sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
+
+#Download Git for Linux and Unix
+sudo apt purge git -y
+sudo apt autoremove -y
+sudo add-apt-repository ppa:git-core/ppa -y
+sudo apt update && sudo apt install git -y
+
+#Install Redshift Daily Builds 
+codename=$(lsb_release --codename --short)
+if [ $codename == "xenial" ]
+then
+	sudo add-apt-repository ppa:dobey/redshift-daily -y
+	sudo apt install geoclue-2.0 -y
+	sudo apt update && sudo apt install redshift-gtk -y
+fi
+
+#Install Mercurial
+codename=$(lsb_release --codename --short)
+if [ $codename == "xenial" ]
+then
+	sudo add-apt-repository ppa:mercurial-ppa/releases -y
+	sudo apt update && sudo apt install mercurial -y
+else
+	sudo apt install mercurial -y
+fi
+
+#qBittorrent Stable
+sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable -y
+sudo apt update && sudo apt install qbittorrent -y
+:'
+#Firefox ESR and Thunderbird
+sudo apt purge firefox firefox-locale-en firefox-locale-pt -y
+sudo apt purge unity-scope-firefoxbookmarks -y
+sudo add-apt-repository ppa:mozillateam/ppa -y
+sudo apt update && sudo apt install firefox-esr-locale-pt -y
+sudo apt install thunderbird-locale-pt-br
+#Installing LibreOffice on Linux
+sudo apt purge libreoffice-common -y
+'
 #WineHQ Binary Packages
 sudo dpkg --add-architecture i386
 wget -nc https://dl.winehq.org/wine-builds/winehq.key
@@ -113,16 +127,20 @@ focal)
 esac
 sudo apt update
 sudo apt install --install-recommends winehq-staging
+
 #Stable releases for the Lutris client
 sudo add-apt-repository ppa:lutris-team/lutris -y
 sudo apt update
 sudo apt install lutris -y
+
 #Spotify for Linux
 curl -sS https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg | sudo apt-key add - 
 echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 sudo apt-get update && sudo apt-get install spotify-client
+
 #VLC media player
 sudo apt install vlc
+
 #Rhythmbox
 sudo apt install rhythmbox
 : '
