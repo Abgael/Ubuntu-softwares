@@ -61,7 +61,7 @@ then
 fi
 
 #Installing utilities
-sudo apt install intel-media-va-driver-non-free vainfo	#VAAPI driver for the Intel GEN8+ Graphics family
+sudo apt install i965-va-driver-shaders libva-drm2 libva-x11-2 vainfo	#Video acceleration
 sudo apt install ubuntu-restricted-extras		#Commonly used media codecs and fonts for Ubuntu
 sudo apt install wget					#The non-interactive network downloader
 sudo apt install curl -y				#transfer a URL
