@@ -113,7 +113,7 @@ sudo apt purge libreoffice-common -y
 #WineHQ Binary Packages
 sudo dpkg --add-architecture i386
 wget -nc https://dl.winehq.org/wine-builds/winehq.key
-sudo apt-key add winehq.key	
+sudo apt-key add winehq.key
 case codename=$(lsb_release --codename --short) in
 xenial)
 	sudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ xenial main' -y
@@ -136,30 +136,11 @@ sudo apt install lutris -y
 #Spotify for Linux
 curl -sS https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg | sudo apt-key add - 
 echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-sudo apt-get update && sudo apt-get install spotify-client
+sudo apt update
+sudo apt install spotify-client -y
 
 #VLC media player
-sudo apt install vlc
+sudo apt install vlc -y
 
 #Rhythmbox
-sudo apt install rhythmbox
-: '
-#Install Julia
-wget https://julialang-s3.julialang.org/bin/linux/x64/1.0/julia-1.0.5-linux-x86_64.tar.gz
-tar zxvf julia-1.0.5-linux-x86_64.tar.gz
-#Install Atom
-wget -qO - https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add -
-sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list'
-sudo apt update
-sudo apt install atom
-# KVM/Installation
-#Installation of KVM
-sudo apt install cpu-checker
-sudo apt install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils
-sudo apt install virt-viewer
-#Add Users to Groups
-sudo adduser `id -un` libvirt
-sudo adduser `id -un` kvm
-#Optional: Install virt-manager (graphical user interface)
-sudo apt-get install virt-manager
-'
+sudo apt install rhythmbox -y
