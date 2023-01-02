@@ -1,24 +1,5 @@
 #!/bin/bash
 
-#Disabling Snaps in Ubuntu 20.04 LTS
-codename=$(lsb_release --codename --short)
-if [ $codename == "focal" ]
-then
-	#Remove existing Snaps
-	sudo snap remove snap-store
-	sudo snap remove gtk-common-themes
-	sudo snap remove gnome-3-34-1804
-	sudo snap remove core18
-	sudo snap remove snapd
-	#Remove and purge the snapd package
-	sudo apt purge snapd -y
-	#Remove any lingering snap directories
-	rm -rf ~/snap
-	sudo rm -rf /snap
-	sudo rm -rf /var/snap
-	sudo rm -rf /var/lib/snapd
-fi
-
 #Fixing missing firmwares
 case codename=$(lsb_release --codename --short) in
 xenial)
