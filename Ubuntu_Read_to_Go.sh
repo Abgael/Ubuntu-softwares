@@ -42,14 +42,16 @@ then
 fi
 
 #Installing utilities
-sudo apt install i965-va-driver-shaders libva-drm2 libva-x11-2 vainfo	#Video acceleration
+#Video acceleration
+sudo apt install i965-va-driver-shaders intel-media-va-driver-non-free vainfo intel-gpu-tools
+sudo apt install libva-drm2 libva-x11-2
 sudo apt install ubuntu-restricted-extras		#Commonly used media codecs and fonts for Ubuntu
 sudo apt install wget					#The non-interactive network downloader
 sudo apt install curl -y				#transfer a URL
 sudo apt install synaptic				#graphical management of software packages
 sudo apt install gdebi					#Simple tool to install deb files
 sudo apt install ppa-purge				#disables a PPA and reverts to official packages
-sudo apt install openjdk-11-jdk -y			#Install Java Development Kit
+sudo apt install openjdk-17-jdk -y			#Install Java Development Kit
 
 sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
 
